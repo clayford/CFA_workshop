@@ -33,7 +33,9 @@ Reason =~ picture + blocks + maze
 '
 
 # Fit the model to ability.cov$cov
-cfa.fit <- cfa(model = cfa.mod0, sample.cov = ability.cov$cov, sample.nobs = ability.cov$n.obs)
+cfa.fit <- cfa(model = cfa.mod0, 
+               sample.cov = ability.cov$cov, 
+               sample.nobs = ability.cov$n.obs)
 # summary of model
 summary(cfa.fit, standardize = TRUE)
 
@@ -56,7 +58,7 @@ residuals(cfa.fit, type = "normalized")
 # read in the covariance matrix of these measures.
 
 # Read in the covariance matrix:
-psych.cov <- as.matrix(read.csv("http://people.virginia.edu/~jcf2d/data/psychotherapy.csv"))
+psych.cov <- as.matrix(read.csv("https://github.com/clayford/CFA_workshop/raw/master/data/psychotherapy.csv"))
 rownames(psych.cov) <- colnames(psych.cov)
 psych.cov
 
@@ -143,7 +145,7 @@ semPaths(cfa.fit,
          edge.label.cex = 1,         # Controls the font size of the edge labels (default = 0.8)
          fixedStyle = 1,             # make all lines have lty = 1 (solid line)
          asize = 2.4)                # Size of the arrowhead
-           
+
 
 # path diagram with unstandardized estimates
 semPaths(cfa.fit, 
@@ -346,7 +348,7 @@ fitted(cfa.fit1)$cov - fitted(cfa.fit2)$cov
 
 # Assessing Normality example
 # data from Ch 9 of Brown
-Data.not.norm <- read.csv("http://people.virginia.edu/~jcf2d/data/cfa_non_ml.csv")
+Data.not.norm <- read.csv("https://github.com/clayford/CFA_workshop/raw/master/data/cfa_non_ml.csv")
 summary(Data.not.norm)
 
 # pairwise scatter plots
@@ -356,7 +358,7 @@ pairs(lapply(Data.not.norm, jitter))
 
 # for Mardia's Multivariate Normality Test
 library(MVN)
-result <- mardiaTest(Data.not.norm, qqplot = TRUE)
+result <- mvn(Data.not.norm, mvnTest = "mardia", multivariatePlot = "qq")
 result
 
 # univariate tests
@@ -375,7 +377,7 @@ summary(fit.mlm, fit.measures = TRUE)
 
 # missing data example
 # from Ch 9 of Brown
-Data.miss <- read.csv("http://people.virginia.edu/~jcf2d/data/cfamiss.csv")
+Data.miss <- read.csv("https://github.com/clayford/CFA_workshop/raw/master/data/cfamiss.csv")
 summary(Data.miss)
 
 # What percent of records have missing data?
@@ -434,11 +436,11 @@ plotPower(ss.n, powerParam = c("LV=~y1", "LV=~y2", "LV=~y3"))
 # Say we know we'll only get 18 subjects:
 # simulate 100 replications of a sample of size 18
 ss.n2 <- sim(nRep = 100, 
-            model = cfa.model, 
-            n = 18, 
-            generate = pop.model, 
-            std.lv=TRUE, 
-            lavaanfun = "cfa")
+             model = cfa.model, 
+             n = 18, 
+             generate = pop.model, 
+             std.lv=TRUE, 
+             lavaanfun = "cfa")
 getPower(ss.n2)
 # nothing to plot
 
@@ -517,7 +519,7 @@ cfa.fit2 <- cfa(model = cfa.model2, sample.cov = ability.cov$cov, sample.nobs = 
 # path diagram with no fitted values
 # ie, the hypothesized model
 semPaths(cfa.fit2, 
-#          style = "lisrel",
+         #          style = "lisrel",
          nCharNodes = 0, 
          label.cex = 1.2, 
          edge.color = "black", 
