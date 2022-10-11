@@ -358,7 +358,7 @@ All of these are broad topics, but we'll just touch on them and offer some gener
 Let's say you have a data frame called `dat`, and you want to use the first 8 columns for a CFA. Some functions helpful for checking normality:
 
 - `pairs(dat[,1:8])` (pairwise scatter plot; does data exhibit non-linear patterns?)
-- `mardiaTest(dat[,1:8], qqplot = TRUE)`  (Mardia's Multivariate Normality Test; function in `MVN` package)
+- `mvn(dat[,1:8], mvnTest = "mardia", multivariatePlot = "qq")`  (Mardia's Multivariate Normality Test; function in `MVN` package)
 - `lapply(dat[,1:8], shapiro.test)`  (univariate tests of normality; univariate nonnormality ensures multivariate non-normality)
 
 
