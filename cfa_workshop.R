@@ -21,7 +21,7 @@ rownames(ability.cov$cov)
 
 # specify a model using lavaan syntax
 
-# model is specied inbetween single quotes: ''
+# model is specified between single quotes: ''
 # see ?model.syntax
 # the letters are optional labels;
 # Notice we can use comments in the model;
@@ -172,7 +172,7 @@ semPaths(cfa.fit,
 
 # Fitted values -----------------------------------------------------------
 
-# Use the fitted function to generare the fitted covariance matrix
+# Use the fitted function to generate the fitted covariance matrix
 fitted(cfa.fit)
 
 # The model for generating this matrix is LPL' + U
@@ -358,8 +358,9 @@ pairs(lapply(Data.not.norm, jitter))
 
 # for Mardia's Multivariate Normality Test
 library(MVN)
-result <- mvn(Data.not.norm, mvnTest = "mardia", multivariatePlot = "qq")
-result
+result <- mvn(Data.not.norm, mvn_test = "mardia")
+summary(result)
+plot(result, diagnostic = "multivariate", type = "qq")
 
 # univariate tests
 # univariate nonnormality ensures multivariate non-normality.
